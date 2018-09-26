@@ -9,7 +9,7 @@ import re
 df = pd.read_csv('gun-violence-data_01-2013_03-2018.csv', index_col=None)
 
 #displays 500 rows before auto collapsing - used for visual analysis
-#pd.set_option('display.max_rows', 5000)
+pd.set_option('display.max_rows', 5000)
 ```
 
 ## Data Wrangling
