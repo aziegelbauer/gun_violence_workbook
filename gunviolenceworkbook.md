@@ -36,10 +36,6 @@ This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-vio
 - incident_characteristics has many kind os data in one column
 - dataframe has too much information to be in one file. 
 
-
-
-age range?
-
 _______________________
 
 The end result of the dataframe will be split into three separate files. Each will including different data, but will retain the incident_id column for the capability to merge or join later. Each column created will be added to a correctly named copy of the original dataframe, and the appropriate columns will be dropped at the end. The dataframes will contain information on the following
