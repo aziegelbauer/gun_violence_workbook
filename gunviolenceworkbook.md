@@ -191,7 +191,7 @@ df_people = df_people.drop(columns = ['participant_gender'])
 ```
 
 #### Column Fixes - participant_status
-- Split into columns "unharmed" and "arrested" with count of each type, and srop original column. 
+- Split into columns "unharmed" and "arrested" with count of each type, and drop original column. 
 - Creates total_involved and total_killed_injured columns
 
 
