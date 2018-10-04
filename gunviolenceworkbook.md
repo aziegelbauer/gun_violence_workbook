@@ -13,7 +13,7 @@ pd.set_option('display.max_rows', 5000)
 ```
 
 ## Data Wrangling
-This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-violence-data. Dataset issues were found both visually and programmatically, and are listed below.  The most common issue found in this dataset is that of multiple values within each cell. Since most of the categories had overlap, and one event could have many delineations of each category, I created single categorical columns with binary operators in order to parse data within cells.
+This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-violence-data. Dataset issues were found both visually and programmatically, and are listed below.  The most common issue found in this dataset is that of multiple values within each cell. Since most of the categories had overlap, and one event could have many delineations within each category, I created categorical columns for each delineation in order to parse data within cells.
 
 ## Assess:
 
