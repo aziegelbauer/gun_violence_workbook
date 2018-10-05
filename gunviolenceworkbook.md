@@ -35,7 +35,7 @@ This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-vio
 - gun_types have many kinds of data within column
 - incident_characteristics has many kind os data in one column
 - dataframe has too much information to be in one file. 
-
+- Create date columns
 _______________________
 
 The end result of the dataframe will be split into three separate files. Each will including different data, but will retain the incident_id column for the capability to merge or join later. Each column created will be added to a correctly named copy of the original dataframe, and the appropriate columns will be dropped at the end. The dataframes will contain information on the following
@@ -46,6 +46,9 @@ The end result of the dataframe will be split into three separate files. Each wi
 ##### df_general:
 - incident_id
 - date
+- day
+- month
+- year
 - state
 - city
 - county
@@ -131,7 +134,7 @@ df_gun = df.copy()
 df_people = df.copy()
 ```
 
-### Datatypes Fixes
+## Datatypes Fixes
 - Change date column to datetime and n_guns_involved, state_house_district, state_senate_district, and congressional_district columns to objects
 
 
@@ -142,6 +145,15 @@ df_general['state_house_district'] = df_general['state_house_district'].astype(o
 df_general['state_senate_district'] = df_general['state_senate_district'].astype(object)
 df_general['congressional_district'] = df_general['congressional_district'].astype(object)
 df_gun['n_guns_involved'] = df_gun['n_guns_involved'].astype(object)
+```
+## Create Date Columns
+- create day, month, and year columns in df_general
+
+```python
+#creates columns 
+df_general['month'] = df_general['date'].dt.month
+df_general['day'] = df_general['date'].dt.day
+df_general['year'] = df_general['date'].dt.year
 ```
 
 ### Column Fixes
