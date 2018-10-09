@@ -9,11 +9,11 @@ import re
 df = pd.read_csv('gun-violence-data_01-2013_03-2018.csv', index_col=None)
 
 #displays 500 rows before auto collapsing - used for visual analysis
-#pd.set_option('display.max_rows', 5000)
+pd.set_option('display.max_rows', 5000)
 ```
 
 ## Data Wrangling
-This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-violence-data. Dataset issues were found both visually and programmatically, and are listed below.  The most common issue found in this dataset is that of multiple values within each cell. Since most of the categories had overlap, and one event could have many delineations of each category, I created single categorical columns with binary operators in order to parse data within cells.
+This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-violence-data. Dataset issues were found both visually and programmatically, and are listed below.  The most common issue found in this dataset is that of multiple values within each cell. Since most of the categories had overlap, and one event could have many delineations within each category, I created categorical columns for each delineation in order to parse data within cells.
 
 ## Assess:
 
@@ -35,11 +35,7 @@ This dataset was downloaded from kaggle: https://www.kaggle.com/jameslko/gun-vio
 - gun_types have many kinds of data within column
 - incident_characteristics has many kind os data in one column
 - dataframe has too much information to be in one file. 
-
-
-
-age range?
-
+- Create date columns
 _______________________
 
 The end result of the dataframe will be split into three separate files. Each will including different data, but will retain the incident_id column for the capability to merge or join later. Each column created will be added to a correctly named copy of the original dataframe, and the appropriate columns will be dropped at the end. The dataframes will contain information on the following
@@ -50,6 +46,9 @@ The end result of the dataframe will be split into three separate files. Each wi
 ##### df_general:
 - incident_id
 - date
+- day
+- month
+- year
 - state
 - city
 - county
@@ -135,7 +134,7 @@ df_gun = df.copy()
 df_people = df.copy()
 ```
 
-### Datatypes Fixes
+## Datatypes Fixes
 - Change date column to datetime and n_guns_involved, state_house_district, state_senate_district, and congressional_district columns to objects
 
 
@@ -146,6 +145,15 @@ df_general['state_house_district'] = df_general['state_house_district'].astype(o
 df_general['state_senate_district'] = df_general['state_senate_district'].astype(object)
 df_general['congressional_district'] = df_general['congressional_district'].astype(object)
 df_gun['n_guns_involved'] = df_gun['n_guns_involved'].astype(object)
+```
+## Create Date Columns
+- create day, month, and year columns in df_general
+
+```python
+#creates columns 
+df_general['month'] = df_general['date'].dt.month
+df_general['day'] = df_general['date'].dt.day
+df_general['year'] = df_general['date'].dt.year
 ```
 
 ### Column Fixes
@@ -195,7 +203,7 @@ df_people = df_people.drop(columns = ['participant_gender'])
 ```
 
 #### Column Fixes - participant_status
-- Split into columns "unharmed" and "arrested" with count of each type, and srop original column. 
+- Split into columns "unharmed" and "arrested" with count of each type, and drop original column. 
 - Creates total_involved and total_killed_injured columns
 
 
